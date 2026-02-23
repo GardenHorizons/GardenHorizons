@@ -1,6 +1,6 @@
 {
   "settings": {
-    "admin_password_hash": "$2a$10$X7V.j.X7V.j.X7V.j.X7V.j.X7V.j.X7V.j.X7V.j.X7V.j.X7V.", 
+    "admin_password_hash": "$2b$10$W0cyRglanGXXoCnm6cIYauOJkz0TUGozBOdjfforU9.7i8mNVH0zu",
     "discord_invite_url": "https://discord.gg/example",
     "game_url": "https://www.roblox.com/games/example",
     "discord_webhook_url": "",
@@ -13,7 +13,20 @@
   "mutations": [],
   "plants": [],
   "hall_of_fame": [],
-  "codes": [],
+  "codes": [
+    {
+      "id": 1,
+      "code": "358",
+      "displayOrder": 3,
+      "description": "Use code »358« to earn 2k up to 25k!"
+    },
+    {
+      "id": 2,
+      "code": "RELEASE",
+      "description": "Use code »RELEASE« to get some money and seeds!",
+      "displayOrder": 1
+    }
+  ],
   "faqs": [
     {
       "id": 1,
