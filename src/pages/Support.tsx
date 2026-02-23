@@ -3,6 +3,7 @@ import axios from 'axios';
 import { motion, AnimatePresence } from 'motion/react';
 import { ChevronDown, ChevronUp, Send, CheckCircle, AlertCircle, MessageSquare, Ticket } from 'lucide-react';
 import { cn } from '../lib/utils';
+import dbData from '../data/db.json';
 
 interface FAQ {
   id: number;
@@ -18,9 +19,15 @@ export default function Support() {
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
 
   useEffect(() => {
-    axios.get('/api/content/faqs')
-      .then(res => setFaqs(res.data))
-      .catch(err => console.error(err));
+    const fetchData = async () => {
+      try {
+        const res = await axios.get('/api/content/faqs');
+        setFaqs(res.data);
+      } catch (err) {
+        setFaqs(dbData.faqs as FAQ[]);
+      }
+    };
+    fetchData();
   }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {

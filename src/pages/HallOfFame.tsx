@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { motion } from 'motion/react';
 import { Play, Trophy } from 'lucide-react';
+import dbData from '../data/db.json';
 
 interface FameItem {
   id: number;
@@ -9,6 +10,7 @@ interface FameItem {
   description: string;
   imageUrl: string;
   youtubeUrl: string;
+  displayOrder?: number;
 }
 
 export default function HallOfFame() {
@@ -16,10 +18,19 @@ export default function HallOfFame() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get('/api/content/hall_of_fame')
-      .then(res => setItems(res.data))
-      .catch(err => console.error(err))
-      .finally(() => setLoading(false));
+    const fetchData = async () => {
+      try {
+        const res = await axios.get('/api/content/hall_of_fame');
+        setItems(res.data);
+      } catch (err) {
+        const staticItems = dbData.hall_of_fame as FameItem[];
+        staticItems.sort((a, b) => (a.displayOrder || 0) - (b.displayOrder || 0) || b.id - a.id);
+        setItems(staticItems);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
   }, []);
 
   return (

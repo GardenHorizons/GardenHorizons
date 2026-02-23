@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { motion } from 'motion/react';
 import { Sprout, Leaf } from 'lucide-react';
+import dbData from '../data/db.json';
 
 interface Item {
   id: number;
@@ -9,6 +10,7 @@ interface Item {
   description: string;
   imageUrl: string;
   overlayText: string;
+  displayOrder?: number;
 }
 
 export default function ContentPage({ type }: { type: 'mutations' | 'plants' }) {
@@ -16,10 +18,21 @@ export default function ContentPage({ type }: { type: 'mutations' | 'plants' }) 
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get(`/api/content/${type}`)
-      .then(res => setItems(res.data))
-      .catch(err => console.error(err))
-      .finally(() => setLoading(false));
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(`/api/content/${type}`);
+        setItems(res.data);
+      } catch (err) {
+        // Fallback to static data
+        const staticItems = (dbData as any)[type] as Item[];
+        // Sort static data
+        staticItems.sort((a, b) => (a.displayOrder || 0) - (b.displayOrder || 0) || b.id - a.id);
+        setItems(staticItems);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
   }, [type]);
 
   const isMutations = type === 'mutations';

@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { motion } from 'motion/react';
 import { Copy, Check, Ticket } from 'lucide-react';
+import dbData from '../data/db.json';
 
 interface CodeItem {
   id: number;
   code: string;
   description: string;
+  displayOrder?: number;
 }
 
 export default function Codes() {
@@ -15,10 +17,19 @@ export default function Codes() {
   const [copiedId, setCopiedId] = useState<number | null>(null);
 
   useEffect(() => {
-    axios.get('/api/content/codes')
-      .then(res => setCodes(res.data))
-      .catch(err => console.error(err))
-      .finally(() => setLoading(false));
+    const fetchData = async () => {
+      try {
+        const res = await axios.get('/api/content/codes');
+        setCodes(res.data);
+      } catch (err) {
+        const staticItems = dbData.codes as CodeItem[];
+        staticItems.sort((a, b) => (a.displayOrder || 0) - (b.displayOrder || 0) || b.id - a.id);
+        setCodes(staticItems);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchData();
   }, []);
 
   const copyToClipboard = (code: string, id: number) => {

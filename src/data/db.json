@@ -1,0 +1,34 @@
+{
+  "settings": {
+    "admin_password_hash": "$2a$10$X7V.j.X7V.j.X7V.j.X7V.j.X7V.j.X7V.j.X7V.j.X7V.j.X7V.", 
+    "discord_invite_url": "https://discord.gg/example",
+    "game_url": "https://www.roblox.com/games/example",
+    "discord_webhook_url": "",
+    "app_icon_url": "https://picsum.photos/seed/icon/200/200",
+    "bg_home": "https://picsum.photos/seed/forest/1920/1080",
+    "bg_mutations": "https://picsum.photos/seed/mystic/1920/1080",
+    "bg_plants": "https://picsum.photos/seed/jungle/1920/1080",
+    "bg_codes": "https://picsum.photos/seed/nebula/1920/1080"
+  },
+  "mutations": [],
+  "plants": [],
+  "hall_of_fame": [],
+  "codes": [],
+  "faqs": [
+    {
+      "id": 1,
+      "question": "How do I join?",
+      "answer": "Click the Discord button in the footer!"
+    },
+    {
+      "id": 2,
+      "question": "What are mutations?",
+      "answer": "Special evolutions with unique traits."
+    },
+    {
+      "id": 3,
+      "question": "Is it free?",
+      "answer": "Yes, Garden Horizons is free to play."
+    }
+  ]
+}
