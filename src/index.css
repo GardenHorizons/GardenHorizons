@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+@theme {
+  --color-gh-dark: #050a0e;
+  --color-gh-darker: #020405;
+  --color-gh-green-dark: #0f291e;
+  --color-gh-green-mid: #1a472a;
+  --color-gh-green-light: #4ade80;
+  --color-gh-purple-dark: #1e1b2e;
+  --color-gh-purple: #581c87;
+  --color-gh-blue-dark: #0f172a;
+  --color-gh-blue: #1e3a8a;
+  --color-gh-accent: #8b5cf6;
+  
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", "Inter", sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-gh-dark text-white font-sans antialiased;
+    background: radial-gradient(circle at top center, #1a2c38 0%, #050a0e 100%);
+    min-height: 100vh;
+  }
+}
+
+.glass-panel {
+  @apply bg-gh-blue-dark/60 backdrop-blur-xl border border-white/5 shadow-2xl;
+}
+
+.text-glow {
+  text-shadow: 0 0 15px rgba(139, 92, 246, 0.6);
+}
+
+.text-glow-green {
+  text-shadow: 0 0 15px rgba(74, 222, 128, 0.5);
+}
+
+.card-roblox {
+  @apply bg-gh-blue-dark/80 border border-white/10 rounded-2xl overflow-hidden transition-all duration-300;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+}
+
+.card-roblox:hover {
+  @apply -translate-y-2 border-gh-accent/30;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 10px 10px -5px rgba(0, 0, 0, 0.3), 0 0 20px rgba(139, 92, 246, 0.2);
+}
+
+.nav-link-active {
+  @apply text-gh-green-light relative;
+}
+
+.nav-link-active::after {
+  content: '';
+  @apply absolute -bottom-1 left-0 right-0 h-0.5 bg-gh-green-light shadow-[0_0_8px_rgba(74,222,128,0.8)] rounded-full;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #050a0e;
+}
+::-webkit-scrollbar-thumb {
+  background: #1a472a;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #4ade80;
+}
