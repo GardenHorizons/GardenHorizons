@@ -55,6 +55,12 @@ if (!fs.existsSync(DB_PATH)) {
   // Ensure directory exists
   fs.mkdirSync(path.dirname(DB_PATH), { recursive: true });
   writeDb(initialData);
+} else {
+  // FORCE PASSWORD RESET (Temporary fix)
+  const db = readDb();
+  db.settings.admin_password_hash = bcrypt.hashSync('admin123', 10);
+  writeDb(db);
+  console.log("Admin password reset to 'admin123'");
 }
 
 async function startServer() {
