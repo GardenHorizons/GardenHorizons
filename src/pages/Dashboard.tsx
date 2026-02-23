@@ -261,11 +261,6 @@ export default function Dashboard() {
                 <div className="space-y-4 pt-4 border-t border-white/10">
                   <h4 className="text-lg font-semibold text-gh-purple">Appearance</h4>
                   <Input label="App Icon URL" value={settingsData.app_icon_url} onChange={v => setSettingsData({...settingsData, app_icon_url: v})} />
-                  <Input label="Home Background URL" value={settingsData.bg_home} onChange={v => setSettingsData({...settingsData, bg_home: v})} />
-                  <Input label="Mutations Background URL" value={settingsData.bg_mutations} onChange={v => setSettingsData({...settingsData, bg_mutations: v})} />
-                  <Input label="Plants Background URL" value={settingsData.bg_plants} onChange={v => setSettingsData({...settingsData, bg_plants: v})} />
-                  <Input label="Codes Background URL" value={settingsData.bg_codes} onChange={v => setSettingsData({...settingsData, bg_codes: v})} />
-                  <Input label="Updates Background URL" value={settingsData.bg_updates} onChange={v => setSettingsData({...settingsData, bg_updates: v})} />
                 </div>
 
                 <div className="space-y-4 pt-4 border-t border-white/10">

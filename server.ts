@@ -36,7 +36,7 @@ if (!fs.existsSync(DB_PATH)) {
       discord_invite_url: 'https://discord.gg/example',
       game_url: 'https://www.roblox.com/games/example',
       discord_webhook_url: '',
-      app_icon_url: 'https://picsum.photos/seed/icon/200/200',
+      app_icon_url: 'https://cdn.discordapp.com/attachments/1475512571980415050/1475516431050342673/IMG_1114.webp?ex=699dc542&is=699c73c2&hm=8b86b32b72ae61c804805865c7e516dc2dbb15d4654d2d9df16e188915be2e2d&',
       bg_home: 'https://picsum.photos/seed/forest/1920/1080',
       bg_mutations: 'https://picsum.photos/seed/mystic/1920/1080',
       bg_plants: 'https://picsum.photos/seed/jungle/1920/1080',
