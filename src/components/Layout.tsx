@@ -18,6 +18,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
       case '/mutations': return settings.bg_mutations;
       case '/plants': return settings.bg_plants;
       case '/codes': return settings.bg_codes || settings.bg_home;
+      case '/updates': return settings.bg_updates || settings.bg_home;
       default: return settings.bg_home; // Fallback
     }
   };
@@ -29,6 +30,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     { name: 'Mutations', path: '/mutations' },
     { name: 'Plants', path: '/plants' },
     { name: 'Codes', path: '/codes' },
+    { name: 'Updates', path: '/updates' },
     { name: 'Hall of Fame', path: '/hall-of-fame' },
     { name: 'Support', path: '/support' },
   ];

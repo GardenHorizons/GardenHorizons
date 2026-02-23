@@ -106,6 +106,7 @@ export default function Dashboard() {
     { id: 'mutations', label: 'Mutations' },
     { id: 'plants', label: 'Plants' },
     { id: 'codes', label: 'Codes' },
+    { id: 'updates', label: 'Updates' },
     { id: 'hall-of-fame', label: 'Hall of Fame' },
     { id: 'faqs', label: 'FAQs' },
     { id: 'settings', label: 'Settings' },
@@ -222,6 +223,16 @@ export default function Dashboard() {
                   </>
                 )}
 
+                {activeTab === 'updates' && (
+                  <>
+                    <Input label="Title" value={editingItem.title} onChange={v => setEditingItem({...editingItem, title: v})} />
+                    <TextArea label="Description" value={editingItem.description} onChange={v => setEditingItem({...editingItem, description: v})} />
+                    <Input label="Image URL" value={editingItem.imageUrl} onChange={v => setEditingItem({...editingItem, imageUrl: v})} />
+                    <Input label="Overlay Text (Bottom Right)" value={editingItem.overlayText} onChange={v => setEditingItem({...editingItem, overlayText: v})} />
+                    <Input label="Display Order" type="number" value={editingItem.displayOrder} onChange={v => setEditingItem({...editingItem, displayOrder: parseInt(v) || 0})} />
+                  </>
+                )}
+
                 {activeTab === 'faqs' && (
                   <>
                     <Input label="Question" value={editingItem.question} onChange={v => setEditingItem({...editingItem, question: v})} />
@@ -254,6 +265,7 @@ export default function Dashboard() {
                   <Input label="Mutations Background URL" value={settingsData.bg_mutations} onChange={v => setSettingsData({...settingsData, bg_mutations: v})} />
                   <Input label="Plants Background URL" value={settingsData.bg_plants} onChange={v => setSettingsData({...settingsData, bg_plants: v})} />
                   <Input label="Codes Background URL" value={settingsData.bg_codes} onChange={v => setSettingsData({...settingsData, bg_codes: v})} />
+                  <Input label="Updates Background URL" value={settingsData.bg_updates} onChange={v => setSettingsData({...settingsData, bg_updates: v})} />
                 </div>
 
                 <div className="space-y-4 pt-4 border-t border-white/10">

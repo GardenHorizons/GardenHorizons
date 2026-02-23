@@ -6,6 +6,7 @@ import ContentPage from './pages/ContentPage';
 import HallOfFame from './pages/HallOfFame';
 import Support from './pages/Support';
 import Codes from './pages/Codes';
+import Updates from './pages/Updates';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import { SettingsProvider } from './contexts/SettingsContext';
@@ -20,6 +21,7 @@ export default function App() {
             <Route path="/mutations" element={<ContentPage type="mutations" />} />
             <Route path="/plants" element={<ContentPage type="plants" />} />
             <Route path="/codes" element={<Codes />} />
+            <Route path="/updates" element={<Updates />} />
             <Route path="/hall-of-fame" element={<HallOfFame />} />
             <Route path="/support" element={<Support />} />
             <Route path="/admin/login" element={<Login />} />

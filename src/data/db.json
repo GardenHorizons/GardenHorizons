@@ -1,18 +1,20 @@
 {
   "settings": {
     "admin_password_hash": "$2b$10$W0cyRglanGXXoCnm6cIYauOJkz0TUGozBOdjfforU9.7i8mNVH0zu",
-    "discord_invite_url": "https://discord.gg/example",
-    "game_url": "https://www.roblox.com/games/example",
-    "discord_webhook_url": "",
+    "discord_invite_url": "https://discord.gg/gardenhorizons",
+    "game_url": "https://www.roblox.com/games/130594398886540/Garden-Horizons",
+    "discord_webhook_url": "https://discord.com/api/webhooks/1475507962058506435/glY7sKo_kmhqZBNlTrkCVW2ZOZCafrG2sELCvKOlOw24MhmRfAl4i3DMBD0MwoM_Vjlt",
     "app_icon_url": "https://picsum.photos/seed/icon/200/200",
     "bg_home": "https://picsum.photos/seed/forest/1920/1080",
     "bg_mutations": "https://picsum.photos/seed/mystic/1920/1080",
     "bg_plants": "https://picsum.photos/seed/jungle/1920/1080",
-    "bg_codes": "https://picsum.photos/seed/nebula/1920/1080"
+    "bg_codes": "https://picsum.photos/seed/nebula/1920/1080",
+    "bg_updates": "https://picsum.photos/seed/fire/1920/1080"
   },
   "mutations": [],
   "plants": [],
   "hall_of_fame": [],
+  "updates": [],
   "codes": [
     {
       "id": 1,
@@ -25,6 +27,12 @@
       "code": "RELEASE",
       "description": "Use code »RELEASE« to get some money and seeds!",
       "displayOrder": 1
+    },
+    {
+      "id": 3,
+      "description": "Use code »DAWN« to get a special seed! [You have to be in there group!]",
+      "code": "DAWN",
+      "displayOrder": 2
     }
   ],
   "faqs": [

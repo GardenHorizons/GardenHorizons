@@ -9,6 +9,7 @@ interface Settings {
   bg_mutations: string;
   bg_plants: string;
   bg_codes?: string;
+  bg_updates?: string;
 }
 
 interface SettingsContextType {
