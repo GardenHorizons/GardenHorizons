@@ -14,7 +14,16 @@
   "mutations": [],
   "plants": [],
   "hall_of_fame": [],
-  "updates": [],
+  "updates": [
+    {
+      "id": 1,
+      "title": "FIRST UPDATE",
+      "displayOrder": 1,
+      "overlayText": "01. May",
+      "imageUrl": "https://cdn.discordapp.com/attachments/1475512571980415050/1475514585946525757/A0598306-CC81-4959-9CCD-CF05CBE3C85E.jpeg?ex=699f150b&is=699dc38b&hm=7036f5f0b3388e67d2f7f3c950aedb3650780d31d7e3551af59c36104d9bd409&",
+      "description": "In the first Garden Horizon Update you will expect the very popular and well-known Trovel, with which you can move your fruits and trees."
+    }
+  ],
   "codes": [
     {
       "id": 1,
