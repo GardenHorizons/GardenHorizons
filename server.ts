@@ -12,8 +12,7 @@ const DB_PATH = path.join(__dirname, 'src/data/db.json');
 const STATIC_CONFIG = {
   discord_invite_url: 'https://discord.gg/gardenhorizons',
   game_url: 'https://www.roblox.com/games/130594398886540/Garden-Horizons',
-  discord_webhook_url: 'https://discord.com/api/webhooks/1475507962058506435/glY7sKo_kmhqZBNlTrkCVW2ZOZCafrG2sELCvKOlOw24MhmRfAl4i3DMBD0MwoM_Vjlt',
-  app_icon_url: 'https://cdn.discordapp.com/attachments/1475512571980415050/1475516431050342673/IMG_1114.webp?ex=699f16c2&is=699dc542&hm=82a8600f386c5c4633b7ea0c21b68ec9eacc2561553dabda622515e61656d1fd&'
+  discord_webhook_url: 'https://discord.com/api/webhooks/1475507962058506435/glY7sKo_kmhqZBNlTrkCVW2ZOZCafrG2sELCvKOlOw24MhmRfAl4i3DMBD0MwoM_Vjlt'
 };
 
 // Helper to read DB

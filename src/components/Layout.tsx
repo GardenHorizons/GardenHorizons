@@ -50,12 +50,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 md:h-20">
             <Link to="/" className="flex items-center gap-3 group">
-              <div className="relative">
-                {settings?.app_icon_url && (
-                  <img src={settings.app_icon_url} alt="Logo" className="w-8 h-8 md:w-10 md:h-10 rounded-xl shadow-lg ring-1 ring-white/10 group-hover:ring-gh-green-light transition-all duration-300" />
-                )}
-                <div className="absolute -inset-1 bg-gh-green-light/20 blur-lg rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              </div>
               <span className="font-display font-bold text-lg md:text-xl tracking-wide text-white group-hover:text-glow-green transition-all">
                 Garden Horizons
               </span>

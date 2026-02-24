@@ -1,10 +1,11 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import axios from 'axios';
+import dbData from '../data/db.json';
 
 interface Settings {
   discord_invite_url: string;
   game_url: string;
-  app_icon_url: string;
+  app_icon_url?: string;
   bg_home: string;
   bg_mutations: string;
   bg_plants: string;
@@ -29,7 +30,9 @@ export function SettingsProvider({ children }: { children: React.ReactNode }) {
       const res = await axios.get('/api/settings/public');
       setSettings(res.data);
     } catch (error) {
-      console.error('Failed to load settings', error);
+      console.warn('Failed to load settings from API, using static fallback');
+      // Fallback to db.json if API fails (e.g. static hosting)
+      setSettings(dbData.settings as Settings);
     } finally {
       setLoading(false);
     }
