@@ -33,18 +33,20 @@ if (!fs.existsSync(DB_PATH)) {
   const initialData = {
     settings: {
       admin_password_hash: bcrypt.hashSync('admin123', 10),
-      discord_invite_url: 'https://discord.gg/example',
-      game_url: 'https://www.roblox.com/games/example',
-      discord_webhook_url: '',
-      app_icon_url: 'https://cdn.discordapp.com/attachments/1475512571980415050/1475516431050342673/IMG_1114.webp?ex=699dc542&is=699c73c2&hm=8b86b32b72ae61c804805865c7e516dc2dbb15d4654d2d9df16e188915be2e2d&',
+      discord_invite_url: 'https://discord.gg/gardenhorizons',
+      game_url: 'https://www.roblox.com/games/130594398886540/Garden-Horizons',
+      discord_webhook_url: 'https://discord.com/api/webhooks/1475507962058506435/glY7sKo_kmhqZBNlTrkCVW2ZOZCafrG2sELCvKOlOw24MhmRfAl4i3DMBD0MwoM_Vjlt',
+      app_icon_url: 'https://cdn.discordapp.com/attachments/1475512571980415050/1475516431050342673/IMG_1114.webp?ex=699f16c2&is=699dc542&hm=82a8600f386c5c4633b7ea0c21b68ec9eacc2561553dabda622515e61656d1fd&',
       bg_home: 'https://picsum.photos/seed/forest/1920/1080',
       bg_mutations: 'https://picsum.photos/seed/mystic/1920/1080',
       bg_plants: 'https://picsum.photos/seed/jungle/1920/1080',
-      bg_codes: 'https://picsum.photos/seed/nebula/1920/1080'
+      bg_codes: 'https://picsum.photos/seed/nebula/1920/1080',
+      bg_updates: 'https://picsum.photos/seed/fire/1920/1080'
     },
     mutations: [],
     plants: [],
     hall_of_fame: [],
+    updates: [],
     codes: [],
     faqs: [
       { id: 1, question: 'How do I join?', answer: 'Click the Discord button in the footer!' },
@@ -55,6 +57,29 @@ if (!fs.existsSync(DB_PATH)) {
   // Ensure directory exists
   fs.mkdirSync(path.dirname(DB_PATH), { recursive: true });
   writeDb(initialData);
+} else {
+  // Force update critical settings on startup to ensure they are synced
+  const db = readDb();
+  let changed = false;
+  
+  const targetIcon = 'https://cdn.discordapp.com/attachments/1475512571980415050/1475516431050342673/IMG_1114.webp?ex=699f16c2&is=699dc542&hm=82a8600f386c5c4633b7ea0c21b68ec9eacc2561553dabda622515e61656d1fd&';
+  const targetWebhook = 'https://discord.com/api/webhooks/1475507962058506435/glY7sKo_kmhqZBNlTrkCVW2ZOZCafrG2sELCvKOlOw24MhmRfAl4i3DMBD0MwoM_Vjlt';
+
+  if (db.settings.app_icon_url !== targetIcon) {
+    db.settings.app_icon_url = targetIcon;
+    changed = true;
+  }
+  
+  // Also ensure webhook is in DB for consistency, even if hardcoded in route
+  if (db.settings.discord_webhook_url !== targetWebhook) {
+    db.settings.discord_webhook_url = targetWebhook;
+    changed = true;
+  }
+
+  if (changed) {
+    writeDb(db);
+    console.log("Updated DB settings with hardcoded values");
+  }
 }
 
 async function startServer() {
