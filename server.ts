@@ -8,6 +8,14 @@ import bcrypt from 'bcryptjs';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const DB_PATH = path.join(__dirname, 'src/data/db.json');
 
+// Hardcoded Configuration to ensure persistence across deployments
+const STATIC_CONFIG = {
+  discord_invite_url: 'https://discord.gg/gardenhorizons',
+  game_url: 'https://www.roblox.com/games/130594398886540/Garden-Horizons',
+  discord_webhook_url: 'https://discord.com/api/webhooks/1475507962058506435/glY7sKo_kmhqZBNlTrkCVW2ZOZCafrG2sELCvKOlOw24MhmRfAl4i3DMBD0MwoM_Vjlt',
+  app_icon_url: 'https://cdn.discordapp.com/attachments/1475512571980415050/1475516431050342673/IMG_1114.webp?ex=699f16c2&is=699dc542&hm=82a8600f386c5c4633b7ea0c21b68ec9eacc2561553dabda622515e61656d1fd&'
+};
+
 // Helper to read DB
 function readDb() {
   try {
@@ -62,18 +70,12 @@ if (!fs.existsSync(DB_PATH)) {
   const db = readDb();
   let changed = false;
   
-  const targetIcon = 'https://cdn.discordapp.com/attachments/1475512571980415050/1475516431050342673/IMG_1114.webp?ex=699f16c2&is=699dc542&hm=82a8600f386c5c4633b7ea0c21b68ec9eacc2561553dabda622515e61656d1fd&';
-  const targetWebhook = 'https://discord.com/api/webhooks/1475507962058506435/glY7sKo_kmhqZBNlTrkCVW2ZOZCafrG2sELCvKOlOw24MhmRfAl4i3DMBD0MwoM_Vjlt';
-
-  if (db.settings.app_icon_url !== targetIcon) {
-    db.settings.app_icon_url = targetIcon;
-    changed = true;
-  }
-  
-  // Also ensure webhook is in DB for consistency, even if hardcoded in route
-  if (db.settings.discord_webhook_url !== targetWebhook) {
-    db.settings.discord_webhook_url = targetWebhook;
-    changed = true;
+  // Sync all static config values to DB
+  for (const [key, value] of Object.entries(STATIC_CONFIG)) {
+    if (db.settings[key] !== value) {
+      db.settings[key] = value;
+      changed = true;
+    }
   }
 
   if (changed) {
@@ -94,10 +96,10 @@ async function startServer() {
   app.get('/api/settings/public', (req, res) => {
     const db = readDb();
     const { settings } = db;
-    // Filter sensitive keys if any (currently hash is the only sensitive one)
-    const publicSettings = { ...settings };
+    // Merge static config to ensure latest values are served
+    const publicSettings = { ...settings, ...STATIC_CONFIG };
     delete publicSettings.admin_password_hash;
-    delete publicSettings.discord_webhook_url;
+    delete publicSettings.discord_webhook_url; // Keep webhook private
     res.json(publicSettings);
   });
 
@@ -123,8 +125,8 @@ async function startServer() {
     const { discordUsername, message } = req.body;
     if (!discordUsername || !message) return res.status(400).json({ error: 'Missing fields' });
 
-    // Hardcoded Webhook URL as requested
-    const webhookUrl = 'https://discord.com/api/webhooks/1475507962058506435/glY7sKo_kmhqZBNlTrkCVW2ZOZCafrG2sELCvKOlOw24MhmRfAl4i3DMBD0MwoM_Vjlt';
+    // Use static config
+    const webhookUrl = STATIC_CONFIG.discord_webhook_url;
 
     if (webhookUrl) {
       try {

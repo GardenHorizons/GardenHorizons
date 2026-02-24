@@ -251,12 +251,6 @@ export default function Dashboard() {
               <form onSubmit={handleSaveSettings} className="space-y-6 max-w-2xl">
                 <h3 className="text-2xl font-bold mb-6">Global Settings</h3>
                 
-                <div className="space-y-4">
-                  <h4 className="text-lg font-semibold text-gh-purple">Integrations</h4>
-                  <Input label="Discord Invite URL" value={settingsData.discord_invite_url} onChange={v => setSettingsData({...settingsData, discord_invite_url: v})} />
-                  <Input label="Roblox Game URL" value={settingsData.game_url} onChange={v => setSettingsData({...settingsData, game_url: v})} />
-                </div>
-
                 <div className="space-y-4 pt-4 border-t border-white/10">
                   <h4 className="text-lg font-semibold text-gh-purple">Security</h4>
                   <Input label="Change Dashboard Password" type="password" value={newPassword} onChange={setNewPassword} placeholder="Leave empty to keep current" />
