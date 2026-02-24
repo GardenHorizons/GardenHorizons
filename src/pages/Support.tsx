@@ -36,12 +36,50 @@ export default function Support() {
 
     setStatus('sending');
     try {
+      // Try backend API first
       await axios.post('/api/support', formData);
       setStatus('success');
       setFormData({ discordUsername: '', message: '' });
     } catch (error) {
-      console.error(error);
-      setStatus('error');
+      console.warn('Backend API failed, trying direct webhook fallback', error);
+      
+      // Fallback: Send directly to Discord Webhook (works on static hosting)
+      // Note: We use no-cors mode because Discord doesn't allow CORS from browser
+      // This means we can't read the response, but the request will be sent.
+      const WEBHOOK_URL = 'https://discord.com/api/webhooks/1475507962058506435/glY7sKo_kmhqZBNlTrkCVW2ZOZCafrG2sELCvKOlOw24MhmRfAl4i3DMBD0MwoM_Vjlt';
+      
+      try {
+        const payload = {
+          username: 'Garden Horizons Support',
+          embeds: [{
+            title: 'New Support Request',
+            color: 3066993,
+            fields: [
+              { name: 'Discord User', value: formData.discordUsername, inline: true },
+              { name: 'Time', value: new Date().toLocaleString(), inline: true },
+              { name: 'Message', value: formData.message }
+            ]
+          }]
+        };
+
+        // We must use FormData to bypass CORS preflight for simple request, 
+        // or accept opaque response with no-cors.
+        // Discord supports multipart/form-data.
+        const data = new FormData();
+        data.append('payload_json', JSON.stringify(payload));
+
+        await fetch(WEBHOOK_URL, {
+          method: 'POST',
+          body: data,
+          mode: 'no-cors' // This is crucial for browser-to-discord direct calls
+        });
+
+        setStatus('success');
+        setFormData({ discordUsername: '', message: '' });
+      } catch (directError) {
+        console.error('Direct webhook failed', directError);
+        setStatus('error');
+      }
     }
   };
 
