@@ -98,8 +98,8 @@ async function startServer() {
     const { discordUsername, message } = req.body;
     if (!discordUsername || !message) return res.status(400).json({ error: 'Missing fields' });
 
-    const db = readDb();
-    const webhookUrl = db.settings.discord_webhook_url;
+    // Hardcoded Webhook URL as requested
+    const webhookUrl = 'https://discord.com/api/webhooks/1475507962058506435/glY7sKo_kmhqZBNlTrkCVW2ZOZCafrG2sELCvKOlOw24MhmRfAl4i3DMBD0MwoM_Vjlt';
 
     if (webhookUrl) {
       try {

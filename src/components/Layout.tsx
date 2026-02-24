@@ -25,11 +25,23 @@ export default function Layout({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="min-h-screen flex flex-col relative overflow-hidden font-sans bg-black">
-      {/* Dynamic Background with Gradient & Glow */}
-      <div className="fixed inset-0 z-[-2] bg-[conic-gradient(at_top,_var(--tw-gradient-stops))] from-gh-green-dark/40 via-purple-900/40 to-blue-900/40 opacity-80" />
-      <div className="fixed inset-0 z-[-2] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-500/10 via-transparent to-transparent blur-3xl" />
-      <div className="fixed inset-0 z-[-2] bg-gradient-to-b from-transparent via-black/20 to-black/80 pointer-events-none" />
+      {/* Deep Jungle Gradient Base */}
+      <div className="fixed inset-0 z-[-2] bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-green-900/40 via-slate-950 to-blue-950" />
       
+      {/* Intense Glow Spots */}
+      <div className="fixed top-0 left-1/4 w-96 h-96 bg-green-500/20 rounded-full blur-[128px] mix-blend-screen pointer-events-none" />
+      <div className="fixed bottom-0 right-1/4 w-96 h-96 bg-blue-600/20 rounded-full blur-[128px] mix-blend-screen pointer-events-none" />
+      <div className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-teal-500/10 rounded-full blur-[128px] mix-blend-screen pointer-events-none" />
+      
+      {/* Subtle Glowing Dots (Static Spores) */}
+      <div className="fixed inset-0 z-[-2] opacity-20" 
+           style={{
+             backgroundImage: 'radial-gradient(rgba(52, 211, 153, 0.5) 1px, transparent 1px), radial-gradient(rgba(96, 165, 250, 0.5) 1px, transparent 1px)',
+             backgroundSize: '60px 60px, 40px 40px',
+             backgroundPosition: '0 0, 20px 20px'
+           }} 
+      />
+
       {/* Glossy Overlay */}
       <div className="fixed inset-0 z-[-1] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150 mix-blend-overlay pointer-events-none" />
 

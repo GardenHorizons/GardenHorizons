@@ -254,13 +254,7 @@ export default function Dashboard() {
                 <div className="space-y-4">
                   <h4 className="text-lg font-semibold text-gh-purple">Integrations</h4>
                   <Input label="Discord Invite URL" value={settingsData.discord_invite_url} onChange={v => setSettingsData({...settingsData, discord_invite_url: v})} />
-                  <Input label="Discord Webhook URL" value={settingsData.discord_webhook_url} onChange={v => setSettingsData({...settingsData, discord_webhook_url: v})} />
                   <Input label="Roblox Game URL" value={settingsData.game_url} onChange={v => setSettingsData({...settingsData, game_url: v})} />
-                </div>
-
-                <div className="space-y-4 pt-4 border-t border-white/10">
-                  <h4 className="text-lg font-semibold text-gh-purple">Appearance</h4>
-                  <Input label="App Icon URL" value={settingsData.app_icon_url} onChange={v => setSettingsData({...settingsData, app_icon_url: v})} />
                 </div>
 
                 <div className="space-y-4 pt-4 border-t border-white/10">
